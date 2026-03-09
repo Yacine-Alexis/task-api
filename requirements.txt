@@ -1,0 +1,60 @@
+# Task-API Dependencies
+#
+# Core Framework
+# FastAPI: Modern, fast web framework for building APIs
+# Uvicorn: ASGI server for running FastAPI
+#
+# Database
+# SQLAlchemy: ORM for database operations
+# asyncpg: Async PostgreSQL driver
+# alembic: Database migrations
+#
+# Authentication & Security
+# python-jose: JWT token handling
+# passlib: Password hashing
+# bcrypt: Bcrypt algorithm for password hashing
+#
+# Validation & Serialization
+# pydantic: Data validation (bundled with FastAPI)
+# pydantic-settings: Settings management
+# email-validator: Email validation
+#
+# Development & Testing
+# pytest: Testing framework
+# pytest-asyncio: Async test support
+# httpx: Async HTTP client for testing
+# pytest-cov: Code coverage
+
+# Core
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.6.0
+pydantic-settings>=2.1.0
+email-validator>=2.1.0
+
+# Database
+sqlalchemy>=2.0.25
+asyncpg>=0.29.0
+alembic>=1.13.0
+aiosqlite>=0.19.0  # For testing with SQLite
+
+# Security
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+bcrypt>=4.1.2
+
+# HTTP
+httpx>=0.26.0
+python-multipart>=0.0.6  # For form data
+
+# Development
+black>=24.1.0
+isort>=5.13.0
+mypy>=1.8.0
+ruff>=0.2.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+factory-boy>=3.3.0  # Test data factories

@@ -1,0 +1,77 @@
+# Docker Compose for Task-API
+#
+# This file defines the multi-container setup for local development.
+#
+# Services:
+# - api: The FastAPI application
+# - db: PostgreSQL database
+# - adminer: Database admin UI (optional, for development)
+#
+# Usage:
+#   docker-compose up -d              # Start all services
+#   docker-compose up -d --build      # Rebuild and start
+#   docker-compose logs -f api        # View API logs
+#   docker-compose down               # Stop and remove containers
+#   docker-compose down -v            # Also remove volumes (data)
+#
+# Access:
+# - API: http://localhost:8000
+# - API Docs: http://localhost:8000/docs
+# - Adminer: http://localhost:8080
+
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: task-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/taskapi
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - DEBUG=true
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # Mount source code for development with auto-reload
+      - ./app:/app/app:ro
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: task-api-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=taskapi
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # Optional: Database admin UI for development
+  adminer:
+    image: adminer:latest
+    container_name: task-api-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+    profiles:
+      - dev  # Only start with: docker-compose --profile dev up
+
+volumes:
+  postgres_data:
+    name: task-api-postgres-data

@@ -1,0 +1,9 @@
+# This directory stores Alembic migration files.
+# Migration files are auto-generated or manually created.
+# Example: 2026_03_09_abc123_initial.py
+#
+# Each migration has:
+#   - revision: Unique identifier
+#   - down_revision: Parent migration
+#   - upgrade(): Apply changes
+#   - downgrade(): Revert changes
