@@ -29,26 +29,26 @@ Usage:
 - Audit trail for compliance
 """
 
-# TODO: Implementation
-# import uuid
-# from datetime import datetime
-# from sqlalchemy import Column, String, Text, DateTime, ForeignKey
-# from sqlalchemy.dialects.postgresql import UUID
-# from sqlalchemy.orm import relationship
-# from app.core.database import Base
-#
-# class ActivityLog(Base):
-#     __tablename__ = "activity_logs"
-#
-#     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-#     task_id = Column(UUID(as_uuid=True), ForeignKey("tasks.id", ondelete="CASCADE"), nullable=False, index=True)
-#     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
-#     action = Column(String(50), nullable=False)
-#     field_changed = Column(String(50))
-#     old_value = Column(Text)
-#     new_value = Column(Text)
-#     created_at = Column(DateTime, default=datetime.utcnow, index=True)
-#
-#     # Relationships
-#     task = relationship("Task")
-#     user = relationship("User")
+import uuid
+from datetime import datetime
+from sqlalchemy import Column, String, Text, DateTime, ForeignKey
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import relationship
+from app.core.database import Base
+
+
+class ActivityLog(Base):
+    __tablename__ = "activity_logs"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    task_id = Column(UUID(as_uuid=True), ForeignKey("tasks.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    action = Column(String(50), nullable=False)
+    field_changed = Column(String(50))
+    old_value = Column(Text)
+    new_value = Column(Text)
+    created_at = Column(DateTime, default=datetime.utcnow, index=True)
+
+    # Relationships
+    task = relationship("Task")
+    user = relationship("User")

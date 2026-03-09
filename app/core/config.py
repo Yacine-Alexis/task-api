@@ -23,22 +23,27 @@ Usage:
 Note: Never commit .env files with real secrets to version control!
 """
 
-# TODO: Implementation
-# from pydantic_settings import BaseSettings
-# from functools import lru_cache
-#
-# class Settings(BaseSettings):
-#     PROJECT_NAME: str = "Task-API"
-#     API_V1_PREFIX: str = "/api/v1"
-#     SECRET_KEY: str
-#     DATABASE_URL: str
-#     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-#
-#     class Config:
-#         env_file = ".env"
-#
-# @lru_cache()
-# def get_settings() -> Settings:
-#     return Settings()
-#
-# settings = get_settings()
+from pydantic_settings import BaseSettings
+from functools import lru_cache
+
+
+class Settings(BaseSettings):
+    PROJECT_NAME: str = "Task-API"
+    API_V1_PREFIX: str = "/api/v1"
+    SECRET_KEY: str
+    ALGORITHM: str = "HS256"
+    DATABASE_URL: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    DEBUG: bool = False
+
+    class Config:
+        env_file = ".env"
+
+
+@lru_cache()
+def get_settings() -> Settings:
+    return Settings()
+
+
+settings = get_settings()
