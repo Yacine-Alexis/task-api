@@ -37,31 +37,31 @@ This project showcases:
 
 ### Core Functionality
 
-| Feature | Description |
-| :------ | :---------- |
-| **Task Management** | Create, update, delete, and organize tasks with priorities and due dates |
-| **Project Workspaces** | Group tasks into projects with color coding and archival support |
-| **Labels & Tags** | Flexible labeling system for task categorization |
-| **Smart Filtering** | Filter tasks by status, priority, project, and date ranges |
-| **Pagination** | Efficient cursor-based pagination for large datasets |
+| Feature                      | Description                                                              |
+| :--------------------------- | :----------------------------------------------------------------------- |
+| **Task Management**    | Create, update, delete, and organize tasks with priorities and due dates |
+| **Project Workspaces** | Group tasks into projects with color coding and archival support         |
+| **Labels & Tags**      | Flexible labeling system for task categorization                         |
+| **Smart Filtering**    | Filter tasks by status, priority, project, and date ranges               |
+| **Pagination**         | Efficient cursor-based pagination for large datasets                     |
 
 ### Authentication & Security
 
-| Feature | Description |
-| :------ | :---------- |
+| Feature                      | Description                                            |
+| :--------------------------- | :----------------------------------------------------- |
 | **JWT Authentication** | Secure token-based auth with access and refresh tokens |
-| **Password Security** | bcrypt hashing with configurable work factors |
-| **Role-Based Access** | Users can only access their own resources |
-| **Input Validation** | Comprehensive request validation with Pydantic v2 |
+| **Password Security**  | bcrypt hashing with configurable work factors          |
+| **Role-Based Access**  | Users can only access their own resources              |
+| **Input Validation**   | Comprehensive request validation with Pydantic v2      |
 
 ### Developer Experience
 
-| Feature | Description |
-| :------ | :---------- |
+| Feature                   | Description                                       |
+| :------------------------ | :------------------------------------------------ |
 | **OpenAPI/Swagger** | Interactive API documentation at `/api/v1/docs` |
-| **Type Safety** | Full type hints throughout the codebase |
-| **Async Support** | Non-blocking I/O for high concurrency |
-| **Hot Reload** | Development server with automatic reloading |
+| **Type Safety**     | Full type hints throughout the codebase           |
+| **Async Support**   | Non-blocking I/O for high concurrency             |
+| **Hot Reload**      | Development server with automatic reloading       |
 
 ---
 
@@ -128,33 +128,28 @@ task-api/
    git clone https://github.com/Yacine-Alexis/task-api.git
    cd task-api
    ```
-
 2. **Create virtual environment**
 
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-
 3. **Install dependencies**
 
    ```bash
    pip install -r requirements.txt
    ```
-
 4. **Configure environment**
 
    ```bash
    cp .env.example .env
    # Edit .env with your database credentials and secret key
    ```
-
 5. **Run database migrations**
 
    ```bash
    alembic upgrade head
    ```
-
 6. **Start the development server**
 
    ```bash
@@ -186,22 +181,22 @@ Once running, access the interactive documentation:
 
 ### Endpoints Overview
 
-| Method | Endpoint | Description |
-| :----- | :------- | :---------- |
-| `POST` | `/api/v1/auth/register` | Register a new user |
-| `POST` | `/api/v1/auth/login` | Authenticate and get tokens |
-| `POST` | `/api/v1/auth/refresh` | Refresh access token |
-| `GET` | `/api/v1/users/me` | Get current user profile |
-| `PATCH` | `/api/v1/users/me` | Update user profile |
-| `GET` | `/api/v1/tasks` | List tasks (with filters) |
-| `POST` | `/api/v1/tasks` | Create a new task |
-| `GET` | `/api/v1/tasks/{id}` | Get task details |
-| `PATCH` | `/api/v1/tasks/{id}` | Update a task |
-| `DELETE` | `/api/v1/tasks/{id}` | Delete a task |
-| `GET` | `/api/v1/projects` | List projects |
-| `POST` | `/api/v1/projects` | Create a project |
-| `GET` | `/api/v1/labels` | List labels |
-| `POST` | `/api/v1/labels` | Create a label |
+| Method     | Endpoint                  | Description                 |
+| :--------- | :------------------------ | :-------------------------- |
+| `POST`   | `/api/v1/auth/register` | Register a new user         |
+| `POST`   | `/api/v1/auth/login`    | Authenticate and get tokens |
+| `POST`   | `/api/v1/auth/refresh`  | Refresh access token        |
+| `GET`    | `/api/v1/users/me`      | Get current user profile    |
+| `PATCH`  | `/api/v1/users/me`      | Update user profile         |
+| `GET`    | `/api/v1/tasks`         | List tasks (with filters)   |
+| `POST`   | `/api/v1/tasks`         | Create a new task           |
+| `GET`    | `/api/v1/tasks/{id}`    | Get task details            |
+| `PATCH`  | `/api/v1/tasks/{id}`    | Update a task               |
+| `DELETE` | `/api/v1/tasks/{id}`    | Delete a task               |
+| `GET`    | `/api/v1/projects`      | List projects               |
+| `POST`   | `/api/v1/projects`      | Create a project            |
+| `GET`    | `/api/v1/labels`        | List labels                 |
+| `POST`   | `/api/v1/labels`        | Create a label              |
 
 ### Example Request
 
@@ -264,30 +259,30 @@ tests/
 
 Environment variables (`.env`):
 
-| Variable | Description | Default |
-| :------- | :---------- | :------ |
-| `PROJECT_NAME` | API title in docs | Task API |
-| `SECRET_KEY` | JWT signing key | (required) |
-| `DATABASE_URL` | PostgreSQL connection string | (required) |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT access token TTL | 30 |
-| `REFRESH_TOKEN_EXPIRE_DAYS` | JWT refresh token TTL | 7 |
+| Variable                        | Description                  | Default    |
+| :------------------------------ | :--------------------------- | :--------- |
+| `PROJECT_NAME`                | API title in docs            | Task API   |
+| `SECRET_KEY`                  | JWT signing key              | (required) |
+| `DATABASE_URL`                | PostgreSQL connection string | (required) |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT access token TTL         | 30         |
+| `REFRESH_TOKEN_EXPIRE_DAYS`   | JWT refresh token TTL        | 7          |
 
 ---
 
 ## 🛠 Tech Stack
 
-| Technology | Purpose |
-| :--------- | :------ |
-| **FastAPI** | Modern async web framework with automatic OpenAPI |
-| **SQLAlchemy 2.0** | Async ORM with type-safe queries |
-| **PostgreSQL** | Production-grade relational database |
-| **Pydantic v2** | Data validation and serialization |
-| **Alembic** | Database schema migrations |
-| **python-jose** | JWT token encoding/decoding |
-| **passlib + bcrypt** | Secure password hashing |
-| **pytest** | Testing framework with async support |
-| **Docker** | Containerization and deployment |
-| **GitHub Actions** | CI/CD pipeline automation |
+| Technology                 | Purpose                                           |
+| :------------------------- | :------------------------------------------------ |
+| **FastAPI**          | Modern async web framework with automatic OpenAPI |
+| **SQLAlchemy 2.0**   | Async ORM with type-safe queries                  |
+| **PostgreSQL**       | Production-grade relational database              |
+| **Pydantic v2**      | Data validation and serialization                 |
+| **Alembic**          | Database schema migrations                        |
+| **python-jose**      | JWT token encoding/decoding                       |
+| **passlib + bcrypt** | Secure password hashing                           |
+| **pytest**           | Testing framework with async support              |
+| **Docker**           | Containerization and deployment                   |
+| **GitHub Actions**   | CI/CD pipeline automation                         |
 
 ---
 
@@ -299,6 +294,6 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 <div align="center">
 
-**Built with ❤️ for learning and portfolio demonstration**
+**Built for learning and portfolio demonstration**
 
 </div>

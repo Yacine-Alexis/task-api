@@ -59,6 +59,23 @@ app.add_middleware(
 app.include_router(api_router, prefix=settings.API_V1_PREFIX)
 
 
+@app.get("/", tags=["Health"])
+async def root():
+    """Health check endpoint."""
+    return {
+        "status": "healthy",
+        "service": settings.PROJECT_NAME,
+        "version": "1.0.0",
+        "docs": f"{settings.API_V1_PREFIX}/docs"
+    }
+
+
+@app.get("/health", tags=["Health"])
+async def health_check():
+    """Detailed health check."""
+    return {"status": "ok"}
+
+
 @app.exception_handler(TaskAPIException)
 async def task_api_exception_handler(request: Request, exc: TaskAPIException):
     """Handle custom application exceptions."""
