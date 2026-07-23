@@ -22,6 +22,8 @@
 
 ## 📋 Overview
 
+A learning prototype created to explore FastAPI, PostgreSQL, authentication and automated testing. It is not production-ready.
+
 Task API is a full-featured backend service demonstrating enterprise-level software engineering practices. Built with FastAPI and PostgreSQL, it provides a robust foundation for task and project management with secure authentication, comprehensive validation, and extensive test coverage.
 
 This project showcases:
